@@ -23,6 +23,23 @@ class Settings(BaseSettings):
     db_uri: str = Field(default="mongodb://localhost:27017/", title="Database URI")
     db_name: str = Field(default="crypto_trading_db", title="DB Name")
 
+    cryptowatch_api_key: str = Field(
+        default="4EXB4F43HCI0PE7EMHLC", title="Cryptowatch API Key"
+    )
+    crypto_pair: str = Field(default="btcusdt", title="BTC/USDT pair")
+    exchanges: str = Field(
+        default="binance,kraken,coinbase,bitfinex", title="Exchange List"
+    )
+
+    market_endpoint: str = Field(
+        default="https://api.cryptowat.ch/markets/:exchange/:pairs/price",
+        title="Market Price Endpoint",
+    )
+    trade_endpoint: str = Field(
+        default="https://api.cryptowat.ch/markets/:exchange/:pairs/trades",
+        title="Trade Order Endpoint",
+    )
+
     class Config:
         env_file = ".env"
 

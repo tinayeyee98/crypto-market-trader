@@ -9,6 +9,7 @@ from .__init__ import __version__ as app_version
 from .config import Settings, get_settings
 from .models.base_model import AppInfo
 from .repositories.db import get_db
+from .routes import trade_orders
 
 log: structlog.BoundLogger = structlog.get_logger()
 settings: Settings = get_settings()
@@ -43,8 +44,7 @@ def create_app(
     # Routes and additional information for openapi
     app.info = AppInfo(app_name=app.title, app_version=app.version)
 
-    # app.include_router(auth_controller.router, prefix=settings.api_prefix)
-    # app.include_router(category_controller.router, prefix=settings.api_prefix)
+    app.include_router(trade_orders.router, prefix=settings.api_prefix)
 
     # Additional information for openapi docs
     app.openapi_tags = openapi_tags

@@ -8,8 +8,6 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.8"
 asyncio = "^3.4.3"
-requests = "^2.31.0"
-python-binance = "^1.0.19"
 fastapi = "^0.101.1"
 uvicorn = "^0.23.2"
 structlog = "^23.1.0"
@@ -20,6 +18,7 @@ pydantic = "^2.2.1"
 motor = "^3.2.0"
 pydantic-settings = "^2.0.3"
 pre-commit = "^3.3.3"
+cryptowatch-sdk = "^0.1.0"
 
 
 [tool.poetry.group.dev.dependencies]
