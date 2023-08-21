@@ -7,9 +7,8 @@ from motor.motor_asyncio import AsyncIOMotorDatabase
 from .__init__ import __name__ as app_name
 from .__init__ import __version__ as app_version
 from .config import Settings, get_settings
+from .controller import trade_orders
 from .models.base_model import AppInfo
-from .repositories.db import get_db
-from .routes import trade_orders
 
 log: structlog.BoundLogger = structlog.get_logger()
 settings: Settings = get_settings()
@@ -36,7 +35,6 @@ def create_app(
         title=app_name,
         version=app_version,
     )
-    init_db()  # Initialize Database
 
     # Initial variable to incliude extra information for openapi tags
     openapi_tags: List[Dict[str, Any]] = []
@@ -53,7 +51,3 @@ def create_app(
     app.add_event_handler("startup", startup)
     app.add_event_handler("shutdown", shutdown)
     return app
-
-
-def init_db(db_uri: str = settings.db_uri, db_name: str = settings.db_name):
-    db: AsyncIOMotorDatabase = get_db(db_uri, db_name)

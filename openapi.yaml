@@ -45,10 +45,16 @@ info:
   version: 0.1.0
 openapi: 3.1.0
 paths:
-  /api/v1/orders/buy/{quantity}:
+  /api/v1/trades/{side}/{quantity}:
     get:
-      operationId: buy_order_api_v1_orders_buy__quantity__get
+      operationId: excute_trade_api_v1_trades__side___quantity__get
       parameters:
+      - in: path
+        name: side
+        required: true
+        schema:
+          title: Side
+          type: string
       - in: path
         name: quantity
         required: true
@@ -81,6 +87,6 @@ paths:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Service Unavailable
           title: Service Temporarily Unavailable
-      summary: Buy Order
+      summary: Excute Trade
       tags:
       - Trading Orders Endpoints
